@@ -11,11 +11,6 @@ int main()
 
     MoveStrings(source, destination);
 
-    for (auto& word : source)
-    {
-        std::cout << word << std::endl;
-    }
-
     for (auto& word : destination)
     {
         std::cout << word << std::endl;
