@@ -28,7 +28,6 @@ int main()
 {
     int N;
     std::cin >> N;
-    std::vector<std::string> answers;
 
     for (int i = 0; i < N; ++i)
     {
@@ -37,17 +36,12 @@ int main()
 
         if (IsAnagrams(word1, word2))
         {
-            answers.push_back("YES");
+            std::cout << "YES\n";
         }
         else
         {
-            answers.push_back("NO");
+            std::cout << "NO\n";
         }
-    }
-
-    for (const auto& answer : answers)
-    {
-      std::cout << answer << std::endl;
     }
 
     return 0;
