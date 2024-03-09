@@ -8,17 +8,19 @@ using namespace std;
 
 void ChangeCapital(unordered_map<string, string>& countries, const string& country, const string& new_capital)
 {
-    if (countries.count(country) == 0)
+    auto& gaega = countries[country];
+
+    if (gaega == "")
     {
         cout << "Introduce new country " << country << " with capital " << new_capital << endl;
     }
-    else if (countries[country] == new_capital)
+    else if (gaega == new_capital)
     {
-       cout << "Country " << country << " hasn't changed its capital" << endl;
+        cout << "Country " << country << " hasn't changed its capital" << endl;
     }
     else
     {
-        string old_capital = countries[country];
+        string old_capital = gaega;
         cout << "Country " << country << " has changed its capital from " << old_capital << " to " << new_capital << endl;
     }
     countries[country] = new_capital;
@@ -34,20 +36,24 @@ void RenameCountry(unordered_map<string, string>& countries, const string& old_c
     {
         string capital = countries[old_country_name];
         cout << "Country " << old_country_name << " with capital " << capital << " has been renamed to " << new_country_name << endl;
-        countries[new_country_name] = capital;
-        countries.erase(old_country_name);
+
+        auto far = countries.extract(old_country_name);
+        far.key() = new_country_name;
+        countries.insert(std::move(far));
     }
 }
 
-void AboutCountry(const unordered_map<string, string>& countries, const string& country)
+void AboutCountry(unordered_map<string, string>& countries, const string& country)
 {
-    if (countries.count(country) == 0)
+    const auto& gaega = countries[country];
+
+    if (gaega == "")
     {
         cout << "Country " << country << " doesn't exist" << endl;
     }
     else
     {
-        cout << "Country " << country << " has capital " << countries.at(country) << endl;
+        cout << "Country " << country << " has capital " << gaega << endl;
     }
 }
 
@@ -61,7 +67,7 @@ void Dump(const unordered_map<string, string>& countries)
     {
         for (const auto& pair : countries)
         {
-           cout << pair.first << "/" << pair.second << " ";
+            cout << pair.first << "/" << pair.second << " ";
         }
         cout << endl;
     }
@@ -99,7 +105,7 @@ int main()
         }
         else if (command == "DUMP")
         {
-           Dump(countries);
+            Dump(countries);
         }
     }
 
