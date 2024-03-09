@@ -24,3 +24,14 @@ std::vector<int> SequenceReversal(const std::vector<int>& v)
 
     return reverse;
 }
+
+
+//std::vector<int> SequenceReversal(const std::vector<int>& v)
+//{
+//    std::vector<int> reverse;
+//
+//    std::copy(v.rbegin(), v.rend(), std::back_inserter(reverse));
+//
+//    return reverse;
+//}
+
