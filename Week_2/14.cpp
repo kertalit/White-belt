@@ -24,12 +24,9 @@ int main()
             std::cin >> temp;
             stops.push_back(temp);
         }
-        auto route = find_if(routes.cbegin(), routes.cend(), [stops](const decltype(routes)::value_type& bus) {
-            return bus.first == stops; });
-
-        if ( route != routes.cend())
+        if (routes.count(stops))
         {
-            std::cout << "Already exists for " << route->second << '\n';
+            std::cout << "Already exists for " << routes[stops] << '\n';
         }
         else
         {
