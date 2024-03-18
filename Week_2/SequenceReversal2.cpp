@@ -18,10 +18,9 @@ int main()
 
 std::vector<int> SequenceReversal(const std::vector<int>& v)
 {
-    std::vector<int> reverse(v.size());
-
+    std::vector<int> reverse;
+    reverse.reserve(v.size());
     std::copy(v.rbegin(), v.rend(), reverse.begin());
-
     return reverse;
 }
 
